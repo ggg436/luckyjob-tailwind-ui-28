@@ -2,13 +2,26 @@ import React, { useState } from 'react';
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Search, MapPin, Calendar, FileText } from "lucide-react";
+import { MapPin, Calendar, FileText } from "lucide-react";
 import { JobCard } from "@/components/JobCard";
 import { jobs } from "@/data/jobs";
+import { SearchBox } from "@/components/SearchBox";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   const [salaryRange, setSalaryRange] = useState([1200, 50000]);
   const [sortBy, setSortBy] = useState("Last updated");
+  const [filteredJobs, setFilteredJobs] = useState(jobs);
+
+  const handleSearch = (query: string) => {
+    const lowercaseQuery = query.toLowerCase();
+    const filtered = jobs.filter(job => 
+      job.title.toLowerCase().includes(lowercaseQuery) ||
+      job.company.toLowerCase().includes(lowercaseQuery) ||
+      job.skills.some(skill => skill.toLowerCase().includes(lowercaseQuery))
+    );
+    setFilteredJobs(filtered);
+  };
 
   return (
     <div className="min-h-screen bg-white w-full">
@@ -24,11 +37,11 @@ const Index = () => {
                 <span className="text-xl font-semibold">LuckyJob</span>
               </div>
               <nav className="hidden md:flex space-x-8">
-                <a href="#" className="hover:text-gray-300">Find job</a>
-                <a href="#" className="hover:text-gray-300">Messages</a>
-                <a href="#" className="hover:text-gray-300">Hiring</a>
-                <a href="#" className="hover:text-gray-300">Community</a>
-                <a href="#" className="hover:text-gray-300">FAQ</a>
+                <Link to="/" className="hover:text-gray-300">Find job</Link>
+                <Link to="#" className="hover:text-gray-300">Messages</Link>
+                <Link to="#" className="hover:text-gray-300">Hiring</Link>
+                <Link to="/community" className="hover:text-gray-300">Community</Link>
+                <Link to="#" className="hover:text-gray-300">FAQ</Link>
               </nav>
             </div>
             <div className="flex items-center space-x-6">
@@ -52,14 +65,7 @@ const Index = () => {
       <div className="bg-black text-white py-4 px-6 w-full">
         <div className="w-full px-4 xl:px-12">
           <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-            <div className="relative w-full md:w-1/2">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4" />
-              <input 
-                type="text" 
-                placeholder="Start typing your job search request" 
-                className="w-full bg-gray-900 border-none rounded-full py-2 pl-10 pr-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
+            <SearchBox onSearch={handleSearch} />
             <div className="flex space-x-4">
               <Button variant="outline" size="icon" className="bg-gray-900 border-0 hover:bg-gray-800">
                 <MapPin className="h-4 w-4" />
@@ -73,7 +79,6 @@ const Index = () => {
             </div>
           </div>
           
-          {/* Salary Range */}
           <div className="mt-6">
             <div className="flex justify-between mb-2">
               <span>Salary range</span>
@@ -94,9 +99,7 @@ const Index = () => {
       {/* Main Content */}
       <div className="w-full px-4 xl:px-12 py-8">
         <div className="flex flex-col md:flex-row gap-8 w-full">
-          {/* Left Sidebar */}
           <div className="w-full md:w-1/4">
-            {/* CTA Card */}
             <div className="rounded-2xl overflow-hidden mb-8 relative">
               <div 
                 className="p-6 text-white" 
@@ -120,13 +123,11 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Filters */}
             <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-semibold">Filters</h3>
               </div>
 
-              {/* Working schedule */}
               <div className="mb-6">
                 <h4 className="text-sm text-gray-500 mb-3">Working schedule</h4>
                 <div className="space-y-2">
@@ -139,7 +140,6 @@ const Index = () => {
                 </div>
               </div>
 
-              {/* Employment type */}
               <div>
                 <h4 className="text-sm text-gray-500 mb-3">Employment type</h4>
                 <div className="space-y-2">
@@ -154,10 +154,11 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Main Content */}
           <div className="w-full md:w-3/4">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold">Popular jobs</h2>
+              <h2 className="text-2xl font-bold">
+                {filteredJobs.length === jobs.length ? "Popular jobs" : `${filteredJobs.length} jobs found`}
+              </h2>
               <div className="flex items-center space-x-2">
                 <span className="text-sm text-gray-500">Sort by:</span>
                 <div className="relative">
@@ -175,9 +176,8 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Job Cards Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {jobs.map(job => (
+              {filteredJobs.map(job => (
                 <JobCard key={job.id} job={job} />
               ))}
             </div>
