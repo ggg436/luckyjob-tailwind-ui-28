@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -37,26 +36,20 @@ const Index = () => {
                 <span className="text-xl font-semibold">LuckyJob</span>
               </div>
               <nav className="hidden md:flex space-x-8">
-                <Link to="/" className="hover:text-gray-300">Find job</Link>
-                <Link to="#" className="hover:text-gray-300">Messages</Link>
-                <Link to="#" className="hover:text-gray-300">Hiring</Link>
-                <Link to="/community" className="hover:text-gray-300">Community</Link>
-                <Link to="#" className="hover:text-gray-300">FAQ</Link>
+                {['Find job', 'Messages', 'Hiring', 'Community', 'FAQ'].map((item) => (
+                  <Link 
+                    key={item} 
+                    to={item === 'Find job' ? '/' : `/${item.toLowerCase()}`}
+                    className="relative text-sm text-gray-300 hover:text-white transition-colors duration-200 after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-blue-500 after:left-0 after:bottom-0 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
+                  >
+                    {item}
+                  </Link>
+                ))}
               </nav>
             </div>
-            <div className="flex items-center space-x-6">
-              <div className="flex items-center">
-                <MapPin className="w-4 h-4 mr-2" />
-                <span>New York, NY</span>
-              </div>
-              <div className="w-8 h-8 rounded-full overflow-hidden bg-pink-500 flex items-center justify-center">
-                <img 
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                  alt="Profile" 
-                  className="object-cover w-full h-full"
-                />
-              </div>
-            </div>
+            <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-medium transition-colors duration-200">
+              Get Started
+            </button>
           </div>
         </div>
       </header>

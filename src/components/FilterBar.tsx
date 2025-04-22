@@ -14,22 +14,41 @@ import { cn } from "@/lib/utils";
 const locations = ["New York, NY", "San Francisco, CA", "Los Angeles, CA", "Chicago, IL", "Miami, FL"];
 const experiences = ["Entry Level", "Mid Level", "Senior Level", "Lead", "Manager"];
 const periods = ["Per month", "Per year", "Per hour", "Per project"];
+const suggestions = ["UI Designer", "Product Designer", "Frontend Developer", "UX Designer", "Web Designer"];
 
 export const FilterBar = () => {
   const [salaryRange, setSalaryRange] = useState([1200, 14684]);
+  const [searchValue, setSearchValue] = useState("");
   
   return (
     <div className="w-full bg-black text-white py-4">
       <div className="max-w-7xl mx-auto px-4 xl:px-12">
         <div className="flex items-center gap-4">
           {/* Search with dropdown */}
-          <div className="relative flex items-center w-[200px]">
-            <Search className="absolute left-3 text-gray-400 w-4 h-4" />
-            <input 
-              type="text"
-              placeholder="Design"
-              className="w-full bg-gray-900 border-none rounded-lg py-2 pl-9 pr-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+          <div className="relative flex flex-col w-[200px]">
+            <div className="relative">
+              <Search className="absolute left-3 text-gray-400 w-4 h-4 top-1/2 -translate-y-1/2" />
+              <input 
+                type="text"
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+                placeholder="Search role"
+                className="w-full bg-gray-900 border-none rounded-lg py-2 pl-9 pr-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            {searchValue && (
+              <div className="absolute top-full left-0 w-full mt-1 bg-gray-900 rounded-lg py-2 z-10">
+                {suggestions.filter(s => s.toLowerCase().includes(searchValue.toLowerCase())).map((suggestion) => (
+                  <div 
+                    key={suggestion}
+                    className="px-3 py-1.5 text-sm hover:bg-gray-800 cursor-pointer"
+                    onClick={() => setSearchValue(suggestion)}
+                  >
+                    {suggestion}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Location Dropdown */}
@@ -86,9 +105,9 @@ export const FilterBar = () => {
             </SelectContent>
           </Select>
 
-          {/* Salary Range */}
-          <div className="flex items-center gap-3 min-w-[300px]">
-            <span className="text-sm whitespace-nowrap">Salary: ${salaryRange[0]}-${salaryRange[1]}</span>
+          {/* Salary Range with improved layout */}
+          <div className="flex flex-col min-w-[300px]">
+            <span className="text-sm mb-1">Salary: ${salaryRange[0]}-${salaryRange[1]}</span>
             <Slider
               defaultValue={salaryRange}
               min={1200}
