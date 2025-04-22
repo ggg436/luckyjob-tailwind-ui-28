@@ -7,6 +7,7 @@ import { jobs } from "@/data/jobs";
 import { Link } from "react-router-dom";
 import { FilterBar } from "@/components/FilterBar";
 import { FAQ } from "@/components/FAQ";
+import { Navbar } from "@/components/Navbar";
 
 const Index = () => {
   const [filteredJobs, setFilteredJobs] = useState(jobs);
@@ -24,33 +25,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-white w-full">
-      {/* Header */}
-      <header className="bg-black text-white py-4 px-6 w-full">
-        <div className="w-full px-4 xl:px-12">
-          <div className="max-w-7xl mx-auto flex items-center justify-between">
-            <div className="flex items-center space-x-10">
-              <div className="flex items-center">
-                <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M13 10V3L4 14H11V21L20 10H13Z" fill="currentColor"/>
-                </svg>
-                <span className="text-xl font-semibold">LuckyJob</span>
-              </div>
-              <nav className="hidden md:flex space-x-8">
-                {['Find job', 'Messages', 'Hiring', 'Community', 'FAQ'].map((item) => (
-                  <Link 
-                    key={item} 
-                    to={item === 'Find job' ? '/' : `/${item.toLowerCase()}`}
-                    className="relative text-sm text-gray-300 hover:text-white transition-colors duration-200"
-                  >
-                    {item}
-                  </Link>
-                ))}
-              </nav>
-            </div>
-          </div>
-        </div>
-      </header>
-
+      <Navbar />
       {/* Filter Bar */}
       <FilterBar onSearch={handleSearch} />
 
