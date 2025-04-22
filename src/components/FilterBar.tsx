@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Search, MapPin, ChevronDown } from 'lucide-react';
 import {
@@ -9,7 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
-import { Slider } from "@/components/ui/slider";
+import { CustomRangeSlider } from './CustomRangeSlider';
 import { cn } from "@/lib/utils";
 
 const locations = ["New York, NY", "San Francisco, CA", "Los Angeles, CA", "Chicago, IL", "Miami, FL"];
@@ -128,17 +127,12 @@ export const FilterBar = ({ onSearch }: FilterBarProps) => {
 
           {/* Salary Range */}
           <div className="flex flex-col min-w-[180px]">
-            <div className="flex items-center justify-between mb-1">
-              <span className="text-xs text-gray-400">Salary</span>
-              <span className="text-xs">${salaryRange[0]}-${salaryRange[1]}</span>
-            </div>
-            <Slider
-              defaultValue={salaryRange}
+            <span className="text-xs text-gray-400 mb-2">Salary</span>
+            <CustomRangeSlider
+              value={salaryRange}
+              onChange={setSalaryRange}
               min={1200}
               max={50000}
-              step={100}
-              onValueChange={setSalaryRange}
-              className="w-full h-1"
             />
           </div>
         </div>
