@@ -7,7 +7,7 @@ const FooterText = ({ text, position, url }: { text: string; position: [number, 
   const [hovered, setHovered] = useState(false);
   const textRef = useRef<any>();
   
-  // Animation when hovering
+  // Animation when hovering - using useFrame from @react-three/fiber
   useFrame(() => {
     if (textRef.current) {
       if (hovered) {
