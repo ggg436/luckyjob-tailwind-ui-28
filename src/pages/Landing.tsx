@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Progress } from "@/components/ui/progress";
 import { ArrowRight } from "lucide-react";
+import { Footer3D } from '@/components/Footer3D';
 
 const Landing = () => {
   return (
@@ -163,17 +164,7 @@ const Landing = () => {
       </div>
       
       {/* Footer CTA Section */}
-      <div className="bg-[#3A5A40] text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-6">Ready to explore?</h2>
-          <p className="mb-8 max-w-2xl mx-auto">Discover our range of healthy, organic products and start your journey to better eating today.</p>
-          <Link to="/find-job">
-            <Button size="lg" className="bg-white text-[#3A5A40] hover:bg-gray-100 rounded-full px-8">
-              Shop Now <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </Link>
-        </div>
-      </div>
+      <Footer3D />
     </div>
   );
 };
