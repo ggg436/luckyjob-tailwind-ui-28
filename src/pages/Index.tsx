@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
-import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { MapPin, Calendar, FileText } from "lucide-react";
+import { FileText } from "lucide-react";
 import { JobCard } from "@/components/JobCard";
 import { jobs } from "@/data/jobs";
 import { SearchBox } from "@/components/SearchBox";
 import { Link } from "react-router-dom";
+import { FilterBar } from "@/components/FilterBar";
 
 const Index = () => {
-  const [salaryRange, setSalaryRange] = useState([1200, 50000]);
-  const [sortBy, setSortBy] = useState("Last updated");
   const [filteredJobs, setFilteredJobs] = useState(jobs);
 
   const handleSearch = (query: string) => {
@@ -61,40 +59,8 @@ const Index = () => {
         </div>
       </header>
 
-      {/* Search Bar */}
-      <div className="bg-black text-white py-4 px-6 w-full">
-        <div className="w-full px-4 xl:px-12">
-          <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-            <SearchBox onSearch={handleSearch} />
-            <div className="flex space-x-4">
-              <Button variant="outline" size="icon" className="bg-gray-900 border-0 hover:bg-gray-800">
-                <MapPin className="h-4 w-4" />
-              </Button>
-              <Button variant="outline" size="icon" className="bg-gray-900 border-0 hover:bg-gray-800">
-                <Calendar className="h-4 w-4" />
-              </Button>
-              <Button variant="outline" size="icon" className="bg-gray-900 border-0 hover:bg-gray-800">
-                <FileText className="h-4 w-4" />
-              </Button>
-            </div>
-          </div>
-          
-          <div className="mt-6">
-            <div className="flex justify-between mb-2">
-              <span>Salary range</span>
-              <span>${salaryRange[0]}-${salaryRange[1]}</span>
-            </div>
-            <Slider
-              defaultValue={salaryRange}
-              min={1200}
-              max={50000}
-              step={100}
-              onValueChange={setSalaryRange}
-              className="w-full"
-            />
-          </div>
-        </div>
-      </div>
+      {/* Filter Bar */}
+      <FilterBar />
 
       {/* Main Content */}
       <div className="w-full px-4 xl:px-12 py-8">
