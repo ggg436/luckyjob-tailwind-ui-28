@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Search, MapPin } from 'lucide-react';
+import { Search, MapPin, ChevronDown } from 'lucide-react';
 import {
   Select,
   SelectContent,
@@ -8,6 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
 import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
 
@@ -27,13 +28,13 @@ export const FilterBar = () => {
           {/* Search with dropdown */}
           <div className="relative flex flex-col w-[200px]">
             <div className="relative">
-              <Search className="absolute left-3 text-gray-400 w-4 h-4 top-1/2 -translate-y-1/2" />
+              <Search className="absolute left-3 text-white w-4 h-4 top-1/2 -translate-y-1/2" />
               <input 
                 type="text"
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
                 placeholder="Search role"
-                className="w-full bg-gray-900 border-none rounded-lg py-2 pl-9 pr-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full bg-gray-900 border-none rounded-lg py-2 pl-9 pr-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
               />
             </div>
             {searchValue && (
@@ -41,7 +42,7 @@ export const FilterBar = () => {
                 {suggestions.filter(s => s.toLowerCase().includes(searchValue.toLowerCase())).map((suggestion) => (
                   <div 
                     key={suggestion}
-                    className="px-3 py-1.5 text-sm hover:bg-gray-800 cursor-pointer"
+                    className="px-3 py-1.5 text-sm hover:bg-gray-800 cursor-pointer transition-colors duration-200"
                     onClick={() => setSearchValue(suggestion)}
                   >
                     {suggestion}
@@ -51,16 +52,19 @@ export const FilterBar = () => {
             )}
           </div>
 
+          <Separator orientation="vertical" className="h-6 bg-gray-700" />
+
           {/* Location Dropdown */}
           <Select>
             <SelectTrigger 
               className={cn(
-                "bg-gray-900 border-none w-[160px] h-9 text-sm text-white",
+                "bg-gray-900 border-none w-[160px] h-9 text-sm text-white transition-all duration-300",
                 "data-[placeholder]:text-gray-500"
               )}
             >
-              <MapPin className="w-4 h-4 mr-2 text-gray-400" />
+              <MapPin className="w-4 h-4 mr-2 text-white" />
               <SelectValue placeholder="Location" />
+              <ChevronDown className="w-4 h-4 text-white opacity-50" />
             </SelectTrigger>
             <SelectContent>
               {locations.map((location) => (
@@ -71,15 +75,18 @@ export const FilterBar = () => {
             </SelectContent>
           </Select>
 
+          <Separator orientation="vertical" className="h-6 bg-gray-700" />
+
           {/* Experience Dropdown */}
           <Select>
             <SelectTrigger 
               className={cn(
-                "bg-gray-900 border-none w-[140px] h-9 text-sm text-white",
+                "bg-gray-900 border-none w-[140px] h-9 text-sm text-white transition-all duration-300",
                 "data-[placeholder]:text-gray-500"
               )}
             >
               <SelectValue placeholder="Experience" />
+              <ChevronDown className="w-4 h-4 text-white opacity-50" />
             </SelectTrigger>
             <SelectContent>
               {experiences.map((exp) => (
@@ -88,15 +95,18 @@ export const FilterBar = () => {
             </SelectContent>
           </Select>
 
+          <Separator orientation="vertical" className="h-6 bg-gray-700" />
+
           {/* Period Dropdown */}
           <Select>
             <SelectTrigger 
               className={cn(
-                "bg-gray-900 border-none w-[120px] h-9 text-sm text-white",
+                "bg-gray-900 border-none w-[120px] h-9 text-sm text-white transition-all duration-300",
                 "data-[placeholder]:text-gray-500"
               )}
             >
               <SelectValue placeholder="Per month" />
+              <ChevronDown className="w-4 h-4 text-white opacity-50" />
             </SelectTrigger>
             <SelectContent>
               {periods.map((period) => (
@@ -105,20 +115,24 @@ export const FilterBar = () => {
             </SelectContent>
           </Select>
 
+          <Separator orientation="vertical" className="h-6 bg-gray-700" />
+
           {/* Salary Range with improved layout */}
-          <div className="flex flex-col min-w-[250px] ml-auto">
-            <div className="flex items-center justify-between mb-1">
-              <span className="text-xs text-gray-400">Salary Range</span>
+          <div className="flex flex-col min-w-[200px]">
+            <div className="flex items-center justify-between mb-1.5">
+              <span className="text-xs text-gray-400">Salary</span>
               <span className="text-xs">${salaryRange[0]}-${salaryRange[1]}</span>
             </div>
-            <Slider
-              defaultValue={salaryRange}
-              min={1200}
-              max={50000}
-              step={100}
-              onValueChange={setSalaryRange}
-              className="w-full h-1.5" // Made slider thinner
-            />
+            <div className="px-1">
+              <Slider
+                defaultValue={salaryRange}
+                min={1200}
+                max={50000}
+                step={100}
+                onValueChange={setSalaryRange}
+                className="w-full h-1 transition-all duration-300"
+              />
+            </div>
           </div>
         </div>
       </div>
