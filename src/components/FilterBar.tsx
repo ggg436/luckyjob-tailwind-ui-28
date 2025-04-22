@@ -17,22 +17,31 @@ const experiences = ["Entry Level", "Mid Level", "Senior Level", "Lead", "Manage
 const periods = ["Per month", "Per year", "Per hour", "Per project"];
 const suggestions = ["UI Designer", "Product Designer", "Frontend Developer", "UX Designer", "Web Designer"];
 
-export const FilterBar = () => {
+interface FilterBarProps {
+  onSearch: (query: string) => void;
+}
+
+export const FilterBar = ({ onSearch }: FilterBarProps) => {
   const [salaryRange, setSalaryRange] = useState([1200, 14684]);
   const [searchValue, setSearchValue] = useState("");
   
+  const handleSearchChange = (value: string) => {
+    setSearchValue(value);
+    onSearch(value);
+  };
+
   return (
     <div className="w-full bg-black text-white py-4">
       <div className="max-w-7xl mx-auto px-4 xl:px-12">
         <div className="flex items-center gap-6">
-          {/* Search with dropdown */}
+          {/* Search with suggestions */}
           <div className="relative flex flex-col w-[200px]">
             <div className="relative">
               <Search className="absolute left-3 text-white w-4 h-4 top-1/2 -translate-y-1/2" />
               <input 
                 type="text"
                 value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
+                onChange={(e) => handleSearchChange(e.target.value)}
                 placeholder="Search role"
                 className="w-full bg-gray-900 border-none rounded-lg py-2 pl-9 pr-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
               />
@@ -43,7 +52,7 @@ export const FilterBar = () => {
                   <div 
                     key={suggestion}
                     className="px-3 py-1.5 text-sm hover:bg-gray-800 cursor-pointer transition-colors duration-200"
-                    onClick={() => setSearchValue(suggestion)}
+                    onClick={() => handleSearchChange(suggestion)}
                   >
                     {suggestion}
                   </div>
@@ -64,7 +73,7 @@ export const FilterBar = () => {
             >
               <MapPin className="w-4 h-4 mr-2 text-white" />
               <SelectValue placeholder="Location" />
-              <ChevronDown className="w-4 h-4 text-white opacity-50" />
+              <ChevronDown className="w-4 h-4 text-white" />
             </SelectTrigger>
             <SelectContent>
               {locations.map((location) => (
@@ -86,7 +95,7 @@ export const FilterBar = () => {
               )}
             >
               <SelectValue placeholder="Experience" />
-              <ChevronDown className="w-4 h-4 text-white opacity-50" />
+              <ChevronDown className="w-4 h-4 text-white" />
             </SelectTrigger>
             <SelectContent>
               {experiences.map((exp) => (
@@ -106,7 +115,7 @@ export const FilterBar = () => {
               )}
             >
               <SelectValue placeholder="Per month" />
-              <ChevronDown className="w-4 h-4 text-white opacity-50" />
+              <ChevronDown className="w-4 h-4 text-white" />
             </SelectTrigger>
             <SelectContent>
               {periods.map((period) => (
@@ -117,22 +126,20 @@ export const FilterBar = () => {
 
           <Separator orientation="vertical" className="h-6 bg-gray-700" />
 
-          {/* Salary Range with improved layout */}
-          <div className="flex flex-col min-w-[200px]">
-            <div className="flex items-center justify-between mb-1.5">
+          {/* Salary Range */}
+          <div className="flex flex-col min-w-[180px]">
+            <div className="flex items-center justify-between mb-1">
               <span className="text-xs text-gray-400">Salary</span>
               <span className="text-xs">${salaryRange[0]}-${salaryRange[1]}</span>
             </div>
-            <div className="px-1">
-              <Slider
-                defaultValue={salaryRange}
-                min={1200}
-                max={50000}
-                step={100}
-                onValueChange={setSalaryRange}
-                className="w-full h-1 transition-all duration-300"
-              />
-            </div>
+            <Slider
+              defaultValue={salaryRange}
+              min={1200}
+              max={50000}
+              step={100}
+              onValueChange={setSalaryRange}
+              className="w-full h-1"
+            />
           </div>
         </div>
       </div>

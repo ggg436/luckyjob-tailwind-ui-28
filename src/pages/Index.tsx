@@ -4,9 +4,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { FileText, MapPin } from "lucide-react";
 import { JobCard } from "@/components/JobCard";
 import { jobs } from "@/data/jobs";
-import { SearchBox } from "@/components/SearchBox";
 import { Link } from "react-router-dom";
 import { FilterBar } from "@/components/FilterBar";
+import { FAQ } from "@/components/FAQ";
 
 const Index = () => {
   const [filteredJobs, setFilteredJobs] = useState(jobs);
@@ -40,22 +40,19 @@ const Index = () => {
                   <Link 
                     key={item} 
                     to={item === 'Find job' ? '/' : `/${item.toLowerCase()}`}
-                    className="relative text-sm text-gray-300 hover:text-white transition-colors duration-200 after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-blue-500 after:left-0 after:bottom-0 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
+                    className="relative text-sm text-gray-300 hover:text-white transition-colors duration-200"
                   >
                     {item}
                   </Link>
                 ))}
               </nav>
             </div>
-            <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-medium transition-colors duration-200">
-              Get Started
-            </button>
           </div>
         </div>
       </header>
 
       {/* Filter Bar */}
-      <FilterBar />
+      <FilterBar onSearch={handleSearch} />
 
       {/* Main Content */}
       <div className="w-full px-4 xl:px-12 py-8">
@@ -122,18 +119,16 @@ const Index = () => {
               </h2>
               <div className="flex items-center space-x-2">
                 <span className="text-sm text-gray-500">Sort by:</span>
-                <div className="relative">
-                  <select 
-                    value={sortBy}
-                    onChange={(e) => setSortBy(e.target.value)}
-                    className="appearance-none bg-transparent pr-8 font-medium focus:outline-none cursor-pointer"
-                  >
-                    <option>Last updated</option>
-                    <option>Salary: High to Low</option>
-                    <option>Salary: Low to High</option>
-                    <option>Most recent</option>
-                  </select>
-                </div>
+                <select 
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="appearance-none bg-transparent pr-8 font-medium focus:outline-none cursor-pointer"
+                >
+                  <option>Last updated</option>
+                  <option>Salary: High to Low</option>
+                  <option>Salary: Low to High</option>
+                  <option>Most recent</option>
+                </select>
               </div>
             </div>
 
@@ -145,6 +140,9 @@ const Index = () => {
           </div>
         </div>
       </div>
+
+      {/* FAQ Section */}
+      <FAQ />
     </div>
   );
 };
