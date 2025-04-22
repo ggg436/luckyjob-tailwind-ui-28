@@ -19,9 +19,8 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/landing" element={<Landing />} />
-          <Route path="/" element={<Index />} />
-          <Route path="/find-job" element={<Navigate to="/" />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/find-job" element={<Index />} />
           <Route path="/job/:id" element={<JobDetails />} />
           <Route path="/community" element={<Community />} />
           <Route path="/about" element={<NotFound />} />
