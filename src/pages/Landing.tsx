@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -13,37 +12,54 @@ const Landing = () => {
     <div className="min-h-screen bg-[#FFFCF7]">
       <Navbar />
       
-      {/* Hero Section */}
+      {/* Hero Section with Dynamic Background */}
       <div className="relative overflow-hidden bg-[#F2FCE2] py-24">
-        <div className="absolute inset-0 z-0 opacity-20" 
-             style={{
-               backgroundImage: "url('https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')",
-               backgroundSize: "cover",
-               backgroundPosition: "center"
-             }}></div>
-        <div className="absolute inset-0 z-0 bg-gradient-to-r from-[#F2FCE2]/80 to-[#F2FCE2]/50"></div>
-        
+        {/* Animated Background Pattern */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute w-full h-full">
+            {/* Animated circles */}
+            <div className="absolute top-20 left-[10%] w-32 h-32 rounded-full bg-[#FEC6A1]/20 animate-[pulse_4s_ease-in-out_infinite]"></div>
+            <div className="absolute top-40 right-[15%] w-40 h-40 rounded-full bg-[#E5DEFF]/20 animate-[pulse_5s_ease-in-out_infinite_0.5s]"></div>
+            <div className="absolute bottom-20 left-[20%] w-24 h-24 rounded-full bg-[#D3E4FD]/20 animate-[pulse_3s_ease-in-out_infinite_1s]"></div>
+            
+            {/* Floating nuts animation */}
+            <div className="absolute top-10 right-[30%] w-16 h-16">
+              <img 
+                src="https://images.unsplash.com/photo-1498936178812-4b2e558d2937?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                alt="Floating nut"
+                className="w-full h-full object-cover rounded-full animate-[bounce_6s_ease-in-out_infinite]"
+              />
+            </div>
+            <div className="absolute bottom-32 right-[10%] w-20 h-20">
+              <img 
+                src="https://images.unsplash.com/photo-1493962853295-0fd70327578a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                alt="Floating nut"
+                className="w-full h-full object-cover rounded-full animate-[bounce_7s_ease-in-out_infinite_0.5s]"
+              />
+            </div>
+          </div>
+          
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#F2FCE2]/95 via-[#F2FCE2]/80 to-[#F2FCE2]/70"></div>
+        </div>
+
+        {/* Hero Content */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col items-center text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-3 text-[#3A5A40]">
+            <h1 className="text-4xl md:text-6xl font-bold mb-3 text-[#3A5A40] animate-fade-in">
               IT'S YOUR FIRST TIME?
             </h1>
-            <p className="text-lg md:text-xl text-[#588157] mb-8 max-w-2xl">
+            <p className="text-lg md:text-xl text-[#588157] mb-8 max-w-2xl animate-fade-in">
               Discover our collection of premium natural foods, nuts, and healthy snacks.
             </p>
             <Link to="/find-job">
-              <Button size="lg" className="bg-[#A3B18A] hover:bg-[#588157] rounded-full px-8 group">
+              <Button size="lg" className="bg-[#A3B18A] hover:bg-[#588157] rounded-full px-8 group animate-fade-in">
                 Explore categories! 
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
           </div>
         </div>
-        
-        {/* Floating nut decorative elements */}
-        <div className="absolute bottom-5 left-10 h-12 w-12 rounded-full bg-[#FEC6A1] opacity-50 animate-pulse"></div>
-        <div className="absolute top-24 right-10 h-8 w-8 rounded-full bg-[#FDE1D3] opacity-50 animate-pulse delay-300"></div>
-        <div className="absolute top-28 left-1/4 h-6 w-6 rounded-full bg-[#E5DEFF] opacity-40 animate-pulse delay-700"></div>
       </div>
       
       {/* Categories Section */}
@@ -77,20 +93,19 @@ const Landing = () => {
         </div>
       </div>
       
-      {/* Best Quality Section */}
+      {/* Best Quality Section with Enhanced Background */}
       <div className="py-16 bg-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5" 
-             style={{
-               backgroundImage: "url('https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')",
-               backgroundSize: "cover",
-               backgroundPosition: "center"
-             }}></div>
-             
-        {/* Floating nut decorative elements */}
-        <div className="absolute top-20 left-[10%] h-10 w-10 rounded-full bg-[#FEC6A1] opacity-30 animate-pulse"></div>
-        <div className="absolute bottom-20 right-[15%] h-12 w-12 rounded-full bg-[#FDE1D3] opacity-30 animate-pulse delay-500"></div>
-        <div className="absolute top-1/2 left-[80%] h-8 w-8 rounded-full bg-[#E5DEFF] opacity-20 animate-pulse delay-300"></div>
-        
+        {/* Animated Background Pattern */}
+        <div className="absolute inset-0">
+          <div className="absolute w-full h-full">
+            {/* Animated floating elements */}
+            <div className="absolute top-20 left-[10%] w-24 h-24 rounded-full bg-[#FEC6A1]/10 animate-[pulse_4s_ease-in-out_infinite]"></div>
+            <div className="absolute bottom-40 right-[15%] w-32 h-32 rounded-full bg-[#E5DEFF]/10 animate-[pulse_5s_ease-in-out_infinite_0.5s]"></div>
+            <div className="absolute top-1/2 left-[80%] w-20 h-20 rounded-full bg-[#D3E4FD]/10 animate-[pulse_3s_ease-in-out_infinite_1s]"></div>
+          </div>
+        </div>
+
+        {/* Best Quality Content */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 tracking-wider text-black">
             BEST QUALITY BASED ON FOODIES FEEDBACK
