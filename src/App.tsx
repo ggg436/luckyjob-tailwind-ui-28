@@ -24,6 +24,8 @@ const App = () => (
           <Route path="/find-job" element={<Navigate to="/" />} />
           <Route path="/job/:id" element={<JobDetails />} />
           <Route path="/community" element={<Community />} />
+          <Route path="/about" element={<NotFound />} />
+          <Route path="/contact" element={<NotFound />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

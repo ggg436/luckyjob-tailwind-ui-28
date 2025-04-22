@@ -10,7 +10,7 @@ import { Footer3D } from '@/components/Footer3D';
 
 const Landing = () => {
   return (
-    <div className="min-h-screen bg-[#FFFCF7]">
+    <div className="min-h-screen bg-[#FFFCF7] flex flex-col">
       <Navbar />
       
       {/* Hero Section with Dynamic Background */}
@@ -163,8 +163,13 @@ const Landing = () => {
         </div>
       </div>
       
-      {/* Footer CTA Section */}
-      <Footer3D />
+      {/* Space before footer */}
+      <div className="py-8"></div>
+      
+      {/* 3D Footer - explicitly adding it at the bottom of the page */}
+      <div className="mt-auto">
+        <Footer3D />
+      </div>
     </div>
   );
 };
