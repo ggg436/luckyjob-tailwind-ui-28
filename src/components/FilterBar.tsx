@@ -21,14 +21,14 @@ export const FilterBar = () => {
   return (
     <div className="w-full bg-black text-white py-4">
       <div className="max-w-7xl mx-auto px-4 xl:px-12">
-        <div className="flex flex-wrap gap-4 items-center">
+        <div className="flex items-center gap-4">
           {/* Search with dropdown */}
-          <div className="relative flex items-center min-w-[200px] flex-1">
-            <Search className="absolute left-3 text-gray-400 w-5 h-5" />
+          <div className="relative flex items-center w-[200px]">
+            <Search className="absolute left-3 text-gray-400 w-4 h-4" />
             <input 
               type="text"
               placeholder="Design"
-              className="w-full bg-gray-900 border-none rounded-lg py-2 pl-10 pr-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full bg-gray-900 border-none rounded-lg py-2 pl-9 pr-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -36,16 +36,16 @@ export const FilterBar = () => {
           <Select>
             <SelectTrigger 
               className={cn(
-                "bg-gray-900 border-none min-w-[180px] text-white",
+                "bg-gray-900 border-none w-[160px] h-9 text-sm text-white",
                 "data-[placeholder]:text-gray-500"
               )}
             >
               <MapPin className="w-4 h-4 mr-2 text-gray-400" />
-              <SelectValue placeholder="Work location" />
+              <SelectValue placeholder="Location" />
             </SelectTrigger>
             <SelectContent>
               {locations.map((location) => (
-                <SelectItem key={location} value={location}>
+                <SelectItem key={location} value={location} className="text-sm">
                   {location}
                 </SelectItem>
               ))}
@@ -56,7 +56,7 @@ export const FilterBar = () => {
           <Select>
             <SelectTrigger 
               className={cn(
-                "bg-gray-900 border-none min-w-[180px] text-white",
+                "bg-gray-900 border-none w-[140px] h-9 text-sm text-white",
                 "data-[placeholder]:text-gray-500"
               )}
             >
@@ -64,7 +64,7 @@ export const FilterBar = () => {
             </SelectTrigger>
             <SelectContent>
               {experiences.map((exp) => (
-                <SelectItem key={exp} value={exp}>{exp}</SelectItem>
+                <SelectItem key={exp} value={exp} className="text-sm">{exp}</SelectItem>
               ))}
             </SelectContent>
           </Select>
@@ -73,7 +73,7 @@ export const FilterBar = () => {
           <Select>
             <SelectTrigger 
               className={cn(
-                "bg-gray-900 border-none min-w-[180px] text-white",
+                "bg-gray-900 border-none w-[120px] h-9 text-sm text-white",
                 "data-[placeholder]:text-gray-500"
               )}
             >
@@ -81,17 +81,14 @@ export const FilterBar = () => {
             </SelectTrigger>
             <SelectContent>
               {periods.map((period) => (
-                <SelectItem key={period} value={period}>{period}</SelectItem>
+                <SelectItem key={period} value={period} className="text-sm">{period}</SelectItem>
               ))}
             </SelectContent>
           </Select>
 
           {/* Salary Range */}
-          <div className="flex-1 min-w-[200px]">
-            <div className="flex justify-between mb-2">
-              <span className="text-sm">Salary range</span>
-              <span className="text-sm">${salaryRange[0]}-${salaryRange[1]}</span>
-            </div>
+          <div className="flex items-center gap-3 min-w-[300px]">
+            <span className="text-sm whitespace-nowrap">Salary: ${salaryRange[0]}-${salaryRange[1]}</span>
             <Slider
               defaultValue={salaryRange}
               min={1200}
