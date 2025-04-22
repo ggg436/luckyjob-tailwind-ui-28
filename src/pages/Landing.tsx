@@ -6,7 +6,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Progress } from "@/components/ui/progress";
 import { ArrowRight } from "lucide-react";
-import { Footer3D } from '@/components/Footer3D';
 
 const Landing = () => {
   return (
@@ -165,11 +164,6 @@ const Landing = () => {
       
       {/* Space before footer */}
       <div className="py-8"></div>
-      
-      {/* 3D Footer - explicitly adding it at the bottom of the page */}
-      <div className="mt-auto">
-        <Footer3D />
-      </div>
     </div>
   );
 };
