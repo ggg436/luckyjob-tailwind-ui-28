@@ -1,7 +1,7 @@
 
 import React, { useRef, useState } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { Text, Float, useFrame } from '@react-three/drei';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { Text, Float } from '@react-three/drei';
 
 const FooterText = ({ text, position, url }: { text: string; position: [number, number, number]; url: string }) => {
   const [hovered, setHovered] = useState(false);
