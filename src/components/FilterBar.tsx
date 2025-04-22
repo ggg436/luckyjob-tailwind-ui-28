@@ -23,7 +23,7 @@ export const FilterBar = () => {
   return (
     <div className="w-full bg-black text-white py-4">
       <div className="max-w-7xl mx-auto px-4 xl:px-12">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-6">
           {/* Search with dropdown */}
           <div className="relative flex flex-col w-[200px]">
             <div className="relative">
@@ -106,15 +106,18 @@ export const FilterBar = () => {
           </Select>
 
           {/* Salary Range with improved layout */}
-          <div className="flex flex-col min-w-[300px]">
-            <span className="text-sm mb-1">Salary: ${salaryRange[0]}-${salaryRange[1]}</span>
+          <div className="flex flex-col min-w-[250px] ml-auto">
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-xs text-gray-400">Salary Range</span>
+              <span className="text-xs">${salaryRange[0]}-${salaryRange[1]}</span>
+            </div>
             <Slider
               defaultValue={salaryRange}
               min={1200}
               max={50000}
               step={100}
               onValueChange={setSalaryRange}
-              className="w-full"
+              className="w-full h-1.5" // Made slider thinner
             />
           </div>
         </div>
