@@ -1,7 +1,8 @@
+
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { FileText } from "lucide-react";
+import { FileText, MapPin } from "lucide-react";
 import { JobCard } from "@/components/JobCard";
 import { jobs } from "@/data/jobs";
 import { SearchBox } from "@/components/SearchBox";
@@ -10,6 +11,7 @@ import { FilterBar } from "@/components/FilterBar";
 
 const Index = () => {
   const [filteredJobs, setFilteredJobs] = useState(jobs);
+  const [sortBy, setSortBy] = useState('Last updated');
 
   const handleSearch = (query: string) => {
     const lowercaseQuery = query.toLowerCase();
